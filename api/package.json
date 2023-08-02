@@ -13,6 +13,7 @@
     "prettier": "^3.0.0"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.10.0",
     "amqplib": "^0.10.3",
     "express": "^4.18.2"
   }

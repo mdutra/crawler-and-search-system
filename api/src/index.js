@@ -1,6 +1,7 @@
 const express = require("express");
 const { catchAll, handleError } = require("./middlewares/custom-middlewares");
 const crawlerRoutes = require("./routes/crawler-routes");
+const searchRoutes = require("./routes/search-routes");
 const QueueService = require("./services/queue-service");
 
 const PORT = 3000;
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/crawler", crawlerRoutes);
+app.use("/search", searchRoutes);
 
 app.use(catchAll);
 app.use(handleError);

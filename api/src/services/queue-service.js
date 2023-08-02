@@ -1,4 +1,5 @@
 const RabbitMQ = require("../rabbitmq/rabbitmq.js");
+const SearchService = require("./search-service");
 
 // TODO: use environemnt variables
 const CRAWLER_INPUT_QUEUE = "crawler_input";
@@ -26,7 +27,7 @@ async function handleCrawlerOutput(message) {
 
     const { cpf, benefitNumber } = JSON.parse(message);
 
-    // TODO: index result on ElasticSearch
+    await SearchService.saveBenefitNumber({ cpf, benefitNumber });
 }
 
 async function sendCrawlerRequest({ cpf, login, senha }) {
