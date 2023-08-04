@@ -2,7 +2,7 @@
 
 Sistema para simplificar a extração e acesso aos números de benefícios.
 
-## Instruções de execução para avaliação do desafio.
+## Instruções de execução para avaliação do desafio
 
 ### Dependências
 
