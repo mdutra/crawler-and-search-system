@@ -7,8 +7,18 @@ class RabbitMQServer {
         this.channel = null;
     }
 
-    async connect() {
-        this.conn = await amqplib.connect(this.uri);
+    async connect({ retries = 20, delay = 5000 } = {}) {
+        for (let i = 0; i < retries; i++) {
+            try {
+                this.conn = await amqplib.connect(this.uri);
+                console.log('Connected to RabbitMQ');
+                break;
+            } catch (error) {
+                console.error(`Connection attempt ${i + 1} failed: ${error.message}`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+
         this.channel = await this.conn.createChannel();
     }
 

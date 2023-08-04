@@ -1,4 +1,5 @@
 const amqplib = require("amqplib");
+const { QueueUnavailable } = require("../error");
 
 class RabbitMQServer {
     constructor(uri) {
@@ -7,12 +8,26 @@ class RabbitMQServer {
         this.channel = null;
     }
 
-    async connect() {
-        this.conn = await amqplib.connect(this.uri);
+    async connect({ retries = 20, delay = 5000 } = {}) {
+        for (let i = 0; i < retries; i++) {
+            try {
+                this.conn = await amqplib.connect(this.uri);
+                console.log('Connected to RabbitMQ');
+                break;
+            } catch (error) {
+                console.error(`Connection attempt ${i + 1} failed: ${error.message}`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+
         this.channel = await this.conn.createChannel();
     }
 
     async publishToQueue(queue, msg) {
+        if (!this.channel) {
+            throw new QueueUnavailable();
+        }
+
         await this.channel.assertQueue(queue, { durable: true });
 
         return this.channel.sendToQueue(queue, Buffer.from(msg));
