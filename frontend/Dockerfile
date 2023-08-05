@@ -2,15 +2,13 @@
 # Use the three stages for production
 FROM node:16-alpine AS installer
 
-RUN mkdir /app && chown node:node /app
 WORKDIR /app
 
-USER node
-COPY --chown=node:node package.json yarn.lock ./
+COPY package*.json ./
 
-RUN yarn
+RUN npm install
 
-COPY --chown=node:node . .
+COPY . .
 
 FROM node:16-alpine AS builder
 
@@ -18,7 +16,7 @@ WORKDIR /app
 
 COPY --chown=node:node --from=installer /app .
 
-RUN yarn run build
+RUN npm run build
 
 # Lightweight web server to serve the static files
 FROM nginx:alpine

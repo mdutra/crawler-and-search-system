@@ -12,8 +12,8 @@ services:
       - ./api:/app
   frontend:
     # work around: run as root to avoid permission issues
-    user: "0"
-    command: ["yarn", "run", "dev"]
+    # user: "0"
+    command: ["npm", "run", "dev"]
     build:
       # only build first stage
       target: installer
