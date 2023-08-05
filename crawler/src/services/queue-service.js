@@ -1,4 +1,5 @@
 const RabbitMQ = require("../rabbitmq/rabbitmq.js");
+const Redis = require("../redis/redis");
 const PortalService = require("./portal-service");
 
 // TODO: use environemnt variables
@@ -6,6 +7,7 @@ const CRAWLER_INPUT_QUEUE = "crawler_input";
 const CRAWLER_OUTPUT_QUEUE = "crawler_output";
 
 const rabbitMQ = new RabbitMQ("amqp://rabbitmq:5672");
+const redis = new Redis({ host: "redis", port: 6379 });
 
 async function initConsumer() {
     try {
@@ -27,16 +29,22 @@ async function handleCrawlerRequest(message) {
 
     const { cpf, login, senha } = JSON.parse(message);
 
-    // TODO: check cache here
+    const hasHash = await redis.hasHash({ prefix: 'crawler_data', key: cpf });
 
-    const benefitNumber = await PortalService.extractBenefitNumber({
-        cpf,
-        login,
-        senha,
-    });
-    await sendBenfitNumber({ cpf, benefitNumber });
+    if (!hasHash) {
+        console.log(`crawler data for ${cpf} not found in the cache`);
 
-    // TODO: set cache here
+        const benefitNumber = await PortalService.extractBenefitNumber({
+            cpf,
+            login,
+            senha,
+        });
+        await sendBenfitNumber({ cpf, benefitNumber });
+
+        await redis.setHash({ prefix: 'crawler_data', key: cpf, data: { benefitNumber } });
+    } else {
+        console.log(`crawler data for ${cpf} found in the cache`);
+    }
 }
 
 async function sendBenfitNumber({ cpf, benefitNumber }) {
