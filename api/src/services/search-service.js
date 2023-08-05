@@ -1,4 +1,4 @@
-const ElasticSearch = require("../elastic-search/elastic-search.js");
+const ElasticSearch = require("../elastic-search/elastic-search");
 
 const elasticSearch = new ElasticSearch("http://elasticsearch:9200");
 

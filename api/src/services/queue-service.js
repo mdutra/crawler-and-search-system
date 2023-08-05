@@ -1,4 +1,4 @@
-const RabbitMQ = require("../rabbitmq/rabbitmq.js");
+const RabbitMQ = require("../rabbitmq/rabbitmq");
 const SearchService = require("./search-service");
 
 // TODO: use environemnt variables

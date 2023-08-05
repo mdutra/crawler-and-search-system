@@ -1,4 +1,4 @@
-const RabbitMQ = require("../rabbitmq/rabbitmq.js");
+const RabbitMQ = require("../rabbitmq/rabbitmq");
 const Redis = require("../redis/redis");
 const PortalService = require("./portal-service");
 
