@@ -11,7 +11,9 @@ services:
       - api_node_modules:/app/node_modules
       - ./api:/app
   frontend:
-    command: ["npm", "run", "dev"]
+    # work around: run as root to avoid permission issues
+    user: "0"
+    command: ["yarn", "run", "dev"]
     build:
       # only build first stage
       target: installer
