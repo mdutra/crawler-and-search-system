@@ -2,21 +2,21 @@
 # Use the three stages for production
 FROM node:16-alpine AS installer
 
-USER node
-
+RUN mkdir /app && chown node:node /app
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+USER node
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn
 
-COPY . .
+COPY --chown=node:node . .
 
 FROM node:16-alpine AS builder
 
 WORKDIR /app
 
-COPY --from=installer /app .
+COPY --chown=node:node --from=installer /app .
 
 RUN yarn run build
 
