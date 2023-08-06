@@ -13,10 +13,9 @@ services:
   frontend:
     # work around: run as root to avoid permission issues
     # user: "0"
-    command: ["npm", "run", "dev"]
     build:
       # only build first stage
-      target: installer
+      dockerfile: Dockerfile.dev
     ports:
       - '4000:4000'
     volumes:

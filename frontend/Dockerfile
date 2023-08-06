@@ -1,6 +1,4 @@
-# Use the first stage only for developement
-# Use the three stages for production
-FROM node:16-alpine AS installer
+FROM node:16-alpine AS builder
 
 WORKDIR /app
 
@@ -9,12 +7,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-
-FROM node:16-alpine AS builder
-
-WORKDIR /app
-
-COPY --chown=node:node --from=installer /app .
 
 RUN npm run build
 
