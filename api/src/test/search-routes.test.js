@@ -1,11 +1,11 @@
 const request = require('supertest');
 const app = require('../app');
-const ElasticSearchService = require('../services/search-service');
+const elasticSearch = require('../config/elastic-search');
 
 const api = request(app);
 
 describe('search benefit number', () => {
-    it.only('should not find benefit number', async () => {
+    it('should not find benefit number', async () => {
         const cpf = "111.111.111-11";
 
         const response = await api.get(`/search/benefit-number/${cpf}`);
@@ -17,7 +17,7 @@ describe('search benefit number', () => {
     it('should find benefit number', async () => {
         const cpf = "222.222.222-22";
         const benefitNumber = "123456";
-        await ElasticSearchService.saveBenefitNumber({ cpf, benefitNumber });
+        await elasticSearch.index(cpf, { benefitNumber });
 
         const response = await api.get(`/search/benefit-number/${cpf}`);
 

@@ -3,7 +3,6 @@ const { NotFoundError } = require("../error");
 
 async function saveBenefitNumber({ cpf, benefitNumber }) {
     await elasticSearch.index({
-        index: "benefit_number",
         id: cpf,
         body: {
             benefitNumber,
@@ -16,7 +15,6 @@ async function getBenefitNumberByCpf(cpf) {
     let data
     try {
         data = await elasticSearch.get({
-            index: "benefit_number",
             id: cpf,
         });
     } catch (e) {
