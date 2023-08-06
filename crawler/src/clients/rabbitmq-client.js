@@ -1,6 +1,6 @@
 const amqplib = require("amqplib");
 
-class RabbitMQServer {
+class RabbitMQClient {
     constructor(uri) {
         this.uri = uri;
         this.conn = null;
@@ -43,4 +43,4 @@ class RabbitMQServer {
     }
 }
 
-module.exports = RabbitMQServer;
+module.exports = RabbitMQClient;

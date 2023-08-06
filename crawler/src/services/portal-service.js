@@ -1,10 +1,7 @@
-const axios = require("axios");
-
-const API_URL =
-    "http://extratoblubeapp-env.eba-mvegshhd.sa-east-1.elasticbeanstalk.com";
+const portal = require("../config/portal");
 
 async function authenticate({ login, senha }) {
-    const res = await axios.post(`${API_URL}/login`, {
+    const res = await portal.post('login', {
         login,
         senha,
     });
@@ -15,7 +12,7 @@ async function authenticate({ login, senha }) {
 }
 
 async function fetchBenefitNumber({ token, cpf }) {
-    const res = await axios.get(`${API_URL}/offline/listagem/${cpf}`, {
+    const res = await portal.get(`offline/listagem/${cpf}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

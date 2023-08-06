@@ -1,8 +1,8 @@
-const IORedis = require("ioredis");
+const Redis = require("ioredis");
 
-class Redis {
+class RedisClient {
     constructor({ host, port }) {
-        this.redis = new IORedis({
+        this.redis = new Redis({
             host,
             port,
         });
@@ -21,4 +21,4 @@ class Redis {
     }
 }
 
-module.exports = Redis;
+module.exports = RedisClient;
