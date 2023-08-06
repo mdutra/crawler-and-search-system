@@ -30,7 +30,6 @@ async function main() {
 
     const CRAWLER_OUTPUT_QUEUE = "crawler_output";
     rabbitMQ.consumeFromQueue(CRAWLER_OUTPUT_QUEUE, handleCrawlerOutput);
-    console.log(`Waiting for messages on ${CRAWLER_OUTPUT_QUEUE} queue`);
 
     app.listen(PORT, () => {
         console.log(`Listening at http://localhost:${PORT}`);

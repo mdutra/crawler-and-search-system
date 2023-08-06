@@ -6,7 +6,6 @@ async function main() {
 
     const CRAWLER_INPUT_QUEUE = "crawler_input";
     rabbitMQ.consumeFromQueue(CRAWLER_INPUT_QUEUE, handleCrawlerRequest);
-    console.log(`Waiting for messages on ${CRAWLER_INPUT_QUEUE} queue`);
 }
 
 main();

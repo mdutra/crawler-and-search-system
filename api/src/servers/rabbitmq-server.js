@@ -45,6 +45,8 @@ class RabbitMQServer {
                 this.channel.ack(msg);
             }
         });
+
+        console.log(`Waiting for messages on ${queue} queue`);
     }
 }
 
