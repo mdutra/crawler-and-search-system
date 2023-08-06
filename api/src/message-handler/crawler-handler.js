@@ -6,6 +6,6 @@ async function handleCrawlerOutput(message) {
     await SearchService.saveBenefitNumber({ cpf, benefitNumber });
 }
 
-return {
+module.exports = {
     handleCrawlerOutput,
 }
