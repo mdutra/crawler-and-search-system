@@ -1,5 +1,5 @@
-const ElasticSearchServer = require("../servers/elastic-search-server");
+const ElasticSearchClient = require("../clients/elastic-search-client");
 
 const ELASTIC_SEARCH_URL = "http://elasticsearch:9200";
 
-module.exports = new ElasticSearchServer(ELASTIC_SEARCH_URL);
+module.exports = new ElasticSearchClient(ELASTIC_SEARCH_URL);
