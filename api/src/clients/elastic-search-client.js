@@ -9,17 +9,25 @@ class ElasticSearchClient {
         this.indexSuffix = indexSuffix;
     }
 
+    setIndex(index) {
+        this.index = this.indexSuffix ? `${index}_${this.indexSuffix}` : index;
+    }
+
     async index({ index, id, body }) {
+        this.setIndex(index);
+
         await this.client.index({
-            index: this.indexSuffix ? `${index}_${this.indexSuffix}` : index,
+            index: this.index,
             id,
             body,
         });
     }
 
     async get({ index, id }) {
+        this.setIndex(index);
+
         return this.client.get({
-            index,
+            index: this.index,
             id,
         });
     }

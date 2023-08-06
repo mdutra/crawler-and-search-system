@@ -1,17 +1,29 @@
 const request = require('supertest');
 const app = require('../app');
+const ElasticSearchService = require('../services/search-service');
 
 const api = request(app);
 
 describe('search benefit number', () => {
-    it('should not find benefit number if index was not created', async () => {
-        const response = await api.get('/search/benefit-number/111.111.111-11');
+    it.only('should not find benefit number', async () => {
+        const cpf = "111.111.111-11";
+
+        const response = await api.get(`/search/benefit-number/${cpf}`);
 
         expect(response.status).toBe(404);
         expect(response.body.error).toBe('Resource not found');
     });
 
-    it.todo('should find benefit number');
-    it.todo('should not find benefit number');
+    it('should find benefit number', async () => {
+        const cpf = "222.222.222-22";
+        const benefitNumber = "123456";
+        await ElasticSearchService.saveBenefitNumber({ cpf, benefitNumber });
+
+        const response = await api.get(`/search/benefit-number/${cpf}`);
+
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({ benefitNumber });
+    });
+
     it.todo('should return search engine unavailable 502');
 });

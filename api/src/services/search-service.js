@@ -20,9 +20,11 @@ async function getBenefitNumberByCpf(cpf) {
             id: cpf,
         });
     } catch (e) {
-        if (e.message === 'index_not_found_exception') {
+        if (e.meta?.statusCode === 404) {
             throw new NotFoundError('Resource not found');
         }
+
+        throw e;
     }
 
     return data.body?._source;
