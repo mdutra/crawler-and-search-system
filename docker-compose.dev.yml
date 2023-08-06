@@ -11,10 +11,7 @@ services:
       - api_node_modules:/app/node_modules
       - ./api:/app
   frontend:
-    # work around: run as root to avoid permission issues
-    # user: "0"
     build:
-      # only build first stage
       dockerfile: Dockerfile.dev
     ports:
       - '4000:4000'

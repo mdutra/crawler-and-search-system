@@ -3,14 +3,12 @@ services:
   crawler:
     build:
       context: ./crawler
-      dockerfile: Dockerfile
     depends_on:
       - rabbitmq
       - redis
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
     ports:
       - '3000:3000'
     depends_on:
@@ -19,7 +17,6 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
     ports:
       - '80:80'
     depends_on:
