@@ -1,15 +1,17 @@
 const { Client } = require("@elastic/elasticsearch");
 
 class ElasticSearchClient {
-    constructor(uri) {
+    constructor(uri, indexSuffix) {
         this.client = new Client({
             node: uri,
         });
+
+        this.indexSuffix = indexSuffix;
     }
 
     async index({ index, id, body }) {
         await this.client.index({
-            index,
+            index: this.indexSuffix ? `${index}_${this.indexSuffix}` : index,
             id,
             body,
         });
