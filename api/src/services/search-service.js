@@ -1,4 +1,5 @@
 const elasticSearch = require("../config/elastic-search");
+const { NotFoundError } = require("../error");
 
 async function saveBenefitNumber({ cpf, benefitNumber }) {
     await elasticSearch.index({
@@ -12,10 +13,17 @@ async function saveBenefitNumber({ cpf, benefitNumber }) {
 }
 
 async function getBenefitNumberByCpf(cpf) {
-    const data = await elasticSearch.get({
-        index: "benefit_number",
-        id: cpf,
-    });
+    let data
+    try {
+        data = await elasticSearch.get({
+            index: "benefit_number",
+            id: cpf,
+        });
+    } catch (e) {
+        if (e.message === 'index_not_found_exception') {
+            throw new NotFoundError('Resource not found');
+        }
+    }
 
     return data.body?._source;
 }
