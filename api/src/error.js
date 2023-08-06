@@ -1,6 +1,6 @@
-class RouteNotFoundError extends Error {
+class NotFoundError extends Error {
     constructor(message) {
-        super(message || "Route not found");
+        super(message || "Not found");
         this.statusCode = 404;
         this.message;
     }
@@ -14,10 +14,10 @@ class QueueUnavailable extends Error {
     }
 }
 
-const errorTypes = [RouteNotFoundError, QueueUnavailable];
+const errorTypes = [NotFoundError, QueueUnavailable];
 
 module.exports = {
-    RouteNotFoundError,
+    NotFoundError,
     QueueUnavailable,
     errorTypes,
 };

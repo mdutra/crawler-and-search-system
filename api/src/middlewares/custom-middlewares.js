@@ -1,7 +1,7 @@
-const { errorTypes, RouteNotFoundError } = require("../error");
+const { errorTypes, NotFoundError } = require("../error");
 
 function catchAll(_req, _res, _next) {
-    throw new RouteNotFoundError();
+    throw new NotFoundError('Route not found');
 }
 
 function handleError(err, _req, res, _next) {
