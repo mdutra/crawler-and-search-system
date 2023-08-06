@@ -12,7 +12,7 @@ Sistema para simplificar a extração e acesso aos números de benefícios.
 
 1. Execute no diretório raíz do projeto:
 ```sh
-$ docker-compose up
+$ docker-compose up --scale crawler=3
 ```
 
 2. Extraia o número de benefício pela API em `http://localhost:3000`:
