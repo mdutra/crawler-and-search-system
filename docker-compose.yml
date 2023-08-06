@@ -1,9 +1,5 @@
 version: '3'
 services:
-  rabbitmq:
-    image: rabbitmq:3
-    ports:
-      - '5672:5672'
   crawler:
     build:
       context: ./crawler
@@ -28,6 +24,10 @@ services:
       - '80:80'
     depends_on:
       - api
+  rabbitmq:
+    image: rabbitmq:3
+    ports:
+      - '5672:5672'
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     ports:
