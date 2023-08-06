@@ -1,6 +1,4 @@
-const ElasticSearch = require("../elastic-search/elastic-search");
-
-const elasticSearch = new ElasticSearch("http://elasticsearch:9200");
+const elasticSearch = require("../config/elastic-search");
 
 async function saveBenefitNumber({ cpf, benefitNumber }) {
     await elasticSearch.index({

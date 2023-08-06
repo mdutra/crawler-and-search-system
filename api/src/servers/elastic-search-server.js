@@ -1,6 +1,6 @@
 const { Client } = require("@elastic/elasticsearch");
 
-class ElasticSearch {
+class ElasticSearchServer {
     constructor(uri) {
         this.client = new Client({
             node: uri,
@@ -23,4 +23,4 @@ class ElasticSearch {
     }
 }
 
-module.exports = ElasticSearch;
+module.exports = ElasticSearchServer;
