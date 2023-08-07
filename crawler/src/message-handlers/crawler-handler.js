@@ -3,7 +3,7 @@ const PortalService = require("../services/portal-service");
 const CrawlerService = require("../services/crawler-service");
 
 async function handleCrawlerRequest(message) {
-    console.log(`Received ${message} from ${CRAWLER_INPUT_QUEUE} queue`);
+    console.log(`Received ${message} from queue`);
 
     const { cpf, login, senha } = JSON.parse(message);
 
@@ -23,5 +23,10 @@ async function handleCrawlerRequest(message) {
     } else {
         console.log(`crawler data for ${cpf} found in the cache`);
     }
+
+    return !hasHash
 }
 
+module.exports = {
+    handleCrawlerRequest,
+}

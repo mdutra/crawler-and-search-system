@@ -43,6 +43,10 @@ class RabbitMQClient {
 
         console.log(`Waiting for messages on ${queue} queue`);
     }
+
+    async disconnect() {
+        await this.conn.close();
+    }
 }
 
 module.exports = RabbitMQClient;

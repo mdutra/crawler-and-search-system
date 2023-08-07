@@ -1,14 +1,11 @@
-const redis = require("../config/redis");
-
-// TODO: use environemnt variables
-const CRAWLER_OUTPUT_QUEUE = "crawler_output";
+const { rabbitMQ, crawlerOutputQueue } = require("../config/rabbitmq");
 
 async function sendBenfitNumber({ cpf, benefitNumber }) {
     const msg = JSON.stringify({ cpf, benefitNumber });
 
-    await redis.publishToQueue(CRAWLER_OUTPUT_QUEUE, msg);
+    await rabbitMQ.publishToQueue(crawlerOutputQueue, msg);
 
-    console.log(`Sent message ${msg} to ${CRAWLER_OUTPUT_QUEUE}`);
+    console.log(`Sent message ${msg} to ${crawlerOutputQueue}`);
 }
 
 module.exports = {

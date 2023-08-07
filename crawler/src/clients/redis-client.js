@@ -19,6 +19,14 @@ class RedisClient {
 
         await this.redis.hmset(`${prefix}:${key}`, ...values);
     }
+
+    async delHash({ prefix, key }) {
+        await this.redis.del(`${prefix}:${key}`);
+    }
+
+    async disconnect() {
+        this.redis.quit();
+    }
 }
 
 module.exports = RedisClient;
