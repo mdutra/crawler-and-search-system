@@ -1,5 +1,5 @@
 const HttpClient = require("../clients/http-client");
 
-const API_URL = "http://extratoblubeapp-env.eba-mvegshhd.sa-east-1.elasticbeanstalk.com";
+const API_URL = process.env.EXTRATO_CLUBE_API;
 
 module.exports = new HttpClient(API_URL);

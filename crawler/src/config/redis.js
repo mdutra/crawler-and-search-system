@@ -1,7 +1,7 @@
 const RedisClient = require('../clients/redis-client');
 
-const REDIS_HOST = "redis";
-const REDIS_PORT = 6379;
+const REDIS_HOST = process.env.REDIS_HOST;
+const REDIS_PORT = process.env.REDIS_PORT;
 let redisDb = 0;
 
 const NODE_ENV = process.env.NODE_ENV;

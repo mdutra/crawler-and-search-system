@@ -2,7 +2,7 @@ const app = require("./app");
 const { rabbitMQ, crawlerOutputQueue } = require("./config/rabbitmq");
 const { handleCrawlerOutput } = require("./message-handler/crawler-handler");
 
-const PORT = 3000;
+const port = process.env.API_PORT || 3000;
 
 async function main() {
     try {
@@ -13,8 +13,8 @@ async function main() {
 
     rabbitMQ.consumeFromQueue(crawlerOutputQueue, handleCrawlerOutput);
 
-    app.listen(PORT, () => {
-        console.log(`Listening at http://localhost:${PORT}`);
+    app.listen(port, () => {
+        console.log(`Listening at http://localhost:${port}`);
     });
 }
 
