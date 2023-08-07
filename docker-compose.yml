@@ -6,6 +6,9 @@ services:
     depends_on:
       - rabbitmq
       - redis
+    environment:
+      - CRAWLER_INPUT_QUEUE=${CRAWLER_INPUT_QUEUE}
+      - CRAWLER_OUTPUT_QUEUE=${CRAWLER_OUTPUT_QUEUE}
   api:
     build:
       context: ./api
@@ -14,6 +17,9 @@ services:
     depends_on:
       - rabbitmq
       - elasticsearch
+    environment:
+      - CRAWLER_INPUT_QUEUE=${CRAWLER_INPUT_QUEUE}
+      - CRAWLER_OUTPUT_QUEUE=${CRAWLER_OUTPUT_QUEUE}
   frontend:
     build:
       context: ./frontend

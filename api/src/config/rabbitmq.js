@@ -2,9 +2,8 @@ const RabbitMQClient = require('../clients/rabbitmq-client');
 
 const uri = `amqp://rabbitmq:5672/`;
 
-// TODO: use environemnt variables
-let crawlerInputQueue = "crawler_input";
-let crawlerOutputQueue = "crawler_output";
+let crawlerInputQueue = process.env.CRAWLER_INPUT_QUEUE || "crawler_input";
+let crawlerOutputQueue = process.env.CRAWLER_OUTPUT_QUEUE || "crawler_output";
 
 const NODE_ENV = process.env.NODE_ENV;
 
