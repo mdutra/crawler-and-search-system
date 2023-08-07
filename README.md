@@ -21,13 +21,13 @@ $ docker-compose up -d --scale crawler=3
 $ docker-compose logs -f api crawler
 
 # Extraia o número de benefício pela API em `http://localhost:3000`:
-curl -d '{"cpf": "000.000.000-00", "login": "usuario", "senha": "123456"}' -H 'Content-Type: application/json' "http://localhost:3000/crawler/extract-benefit-number"
+$ curl -d '{"cpf": "000.000.000-00", "login": "usuario", "senha": "123456"}' -H 'Content-Type: application/json' "http://localhost:3000/crawler/extract-benefit-number"
 
 # Execute os testes da API
-docker-compose exec api npm test
+$ docker-compose exec api npm test
 
 # Execute os testes do crawler
-docker-compose exec crawler npm test
+$ docker-compose exec crawler npm test
 ```
  
 ### Frontend
