@@ -2,6 +2,8 @@
 
 Sistema para simplificar a extração e acesso aos números de benefícios.
 
+![Visão Geral do Sistema][assets/system-overview.jpg]
+
 ## Instruções de execução para avaliação do desafio
 
 ### Dependências
