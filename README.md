@@ -10,18 +10,29 @@ Sistema para simplificar a extração e acesso aos números de benefícios.
 
 `docker` e `docker-compose`.
 
-### Iniciar todos os serviços
+### Execução
 
-1. Execute no diretório raíz do projeto:
+Execute os seguintes comandos na pasta raíz do projeto:
 ```sh
-$ docker-compose up --scale crawler=3
-```
+# Inicie todos os serviços
+$ docker-compose up -d --scale crawler=3
 
-2. Extraia o número de benefício pela API em `http://localhost:3000`:
-```sh
+# Espere os serviços se conectarem ao RabbitMQ
+$ docker-compose logs -f api crawler
+
+# Extraia o número de benefício pela API em `http://localhost:3000`:
 curl -d '{"cpf": "000.000.000-00", "login": "usuario", "senha": "123456"}' -H 'Content-Type: application/json' "http://localhost:3000/crawler/extract-benefit-number"
+
+# Execute os testes da API
+docker-compose exec api npm test
+
+# Execute os testes do crawler
+docker-compose exec crawler npm test
 ```
-3. Acesse o frontend `http://localhost:80`.
+ 
+### Frontend
+
+Acesse o frontend em `http://localhost:80`.
 
 ## Instruções de execução para desenvolvimento
 
