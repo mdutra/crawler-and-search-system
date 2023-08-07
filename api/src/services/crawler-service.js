@@ -1,14 +1,11 @@
-const rabbitMQ = require("../config/rabbitmq");
-
-// TODO: use environemnt variables
-const CRAWLER_INPUT_QUEUE = "crawler_input";
+const { rabbitMQ, crawlerInputQueue } = require("../config/rabbitmq");
 
 async function sendCrawlerRequest({ cpf, login, senha }) {
     const message = JSON.stringify({ cpf, login, senha });
 
-    await rabbitMQ.publishToQueue(CRAWLER_INPUT_QUEUE, message);
+    await rabbitMQ.publishToQueue(crawlerInputQueue, message);
 
-    console.log(`sent ${message} to ${CRAWLER_INPUT_QUEUE} queue`);
+    console.log(`sent ${message} to ${crawlerInputQueue} queue`);
 }
 
 module.exports = {

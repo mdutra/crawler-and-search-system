@@ -1,5 +1,20 @@
 const RabbitMQClient = require('../clients/rabbitmq-client');
 
-const RABBITMQ_URI = "amqp://rabbitmq:5672";
+const uri = `amqp://rabbitmq:5672/`;
 
-module.exports = new RabbitMQClient(RABBITMQ_URI);
+// TODO: use environemnt variables
+let crawlerInputQueue = "crawler_input";
+let crawlerOutputQueue = "crawler_output";
+
+const NODE_ENV = process.env.NODE_ENV;
+
+if (NODE_ENV === 'test') {
+    crawlerInputQueue += '_api_test';
+    crawlerOutputQueue += '_api_test';
+}
+
+module.exports = {
+    rabbitMQ: new RabbitMQClient(uri),
+    crawlerInputQueue,
+    crawlerOutputQueue,
+}
