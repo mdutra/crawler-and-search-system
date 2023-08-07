@@ -5,12 +5,12 @@ class ElasticSearchClient {
         this.client = new Client({
             node: uri,
         });
-        this.index = index;
+        this.indexName = index;
     }
 
     async index({ id, body }) {
         await this.client.index({
-            index: this.index,
+            index: this.indexName,
             id,
             body,
         });
@@ -18,7 +18,7 @@ class ElasticSearchClient {
 
     async get({ id }) {
         return this.client.get({
-            index: this.index,
+            index: this.indexName,
             id,
         });
     }

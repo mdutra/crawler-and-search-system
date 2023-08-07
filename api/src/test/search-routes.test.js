@@ -17,7 +17,7 @@ describe('search benefit number', () => {
     it('should find benefit number', async () => {
         const cpf = "222.222.222-22";
         const benefitNumber = "123456";
-        await elasticSearch.index(cpf, { benefitNumber });
+        await elasticSearch.index({ id: cpf, body: { benefitNumber } });
 
         const response = await api.get(`/search/benefit-number/${cpf}`);
 
