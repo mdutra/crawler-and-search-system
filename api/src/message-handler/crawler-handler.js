@@ -1,7 +1,7 @@
 const SearchService = require('../services/search-service');
 
 async function handleCrawlerOutput(message) {
-    console.log(`Received ${message} from ${CRAWLER_OUTPUT_QUEUE} queue`);
+    console.log(`Received ${message} from queue`);
 
     const { cpf, benefitNumber } = JSON.parse(message);
 
