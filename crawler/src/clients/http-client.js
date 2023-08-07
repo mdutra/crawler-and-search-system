@@ -6,7 +6,7 @@ class HttpClient {
     }
 
     async get(path) {
-        return axios.get(`${this.url}/${this.path}`);
+        return axios.get(`${this.url}/${path}`);
     }
 
     async post(path, payload) {

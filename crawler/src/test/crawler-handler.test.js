@@ -2,7 +2,6 @@ const { rabbitMQ, crawlerOutputQueue } = require('../config/rabbitmq');
 const { handleCrawlerRequest } = require('../message-handlers/crawler-handler');
 const { cleanAndDisconnectRabbitMQ } = require('./config/test-config');
 const redis = require('../config/redis');
-const HttpClient = require('../clients/http-client');
 
 jest.mock('../clients/http-client', () => {
   return jest.fn().mockImplementation(() => ({

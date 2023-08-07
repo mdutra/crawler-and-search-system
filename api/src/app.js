@@ -3,10 +3,6 @@ const cors = require("cors");
 const { catchAll, handleError } = require("./middlewares/custom-middlewares");
 const crawlerRoutes = require("./routes/crawler-routes");
 const searchRoutes = require("./routes/search-routes");
-const rabbitMQ = require("./config/rabbitmq");
-const { handleCrawlerOutput } = require("./message-handler/crawler-handler");
-
-const PORT = 3000;
 
 const app = express();
 

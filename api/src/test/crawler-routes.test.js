@@ -14,8 +14,6 @@ describe('crawler', () => {
     })
 
     it('should publish cpf to queue', async () => {
-        const cpf = "111.111.111-11";
-
         const response = await api
             .post('/crawler/extract-benefit-number')
             .send({
