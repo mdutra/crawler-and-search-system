@@ -24,6 +24,4 @@ describe('search benefit number', () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual({ benefitNumber });
     });
-
-    it.todo('should return search engine unavailable 502');
 });

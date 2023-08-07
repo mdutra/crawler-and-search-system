@@ -25,6 +25,4 @@ describe('crawler', () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual({ ok: true });
     });
-
-    it.todo('should queue be unavailable 502');
 });

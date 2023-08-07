@@ -18,15 +18,11 @@ async function fetchBenefitNumber({ token, cpf }) {
         },
     });
 
-    // TODO: use a list
     return res.data.beneficios.map((b) => b.nb)[0];
 }
 
 async function extractBenefitNumber({ cpf, login, senha }) {
-    // TODO: check cache for token
-
     const token = await authenticate({ login, senha });
-    // TODO: cache token
 
     const benifitNumber = await fetchBenefitNumber({ token, cpf });
 
