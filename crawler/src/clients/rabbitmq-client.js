@@ -36,8 +36,13 @@ class RabbitMQClient {
                 console.log("Consumer cancelled by server");
             } else {
                 const msgString = msg.content.toString();
-                fn(msgString);
-                this.channel.ack(msg);
+                try {
+                    await fn(msgString);
+                    this.channel.ack(msg);
+                } catch(e) {
+                    console.error('Failed to process message:', e.message);
+                    this.channel.nack(msg, false, false);
+                }
             }
         });
 

@@ -22,11 +22,16 @@ async function fetchBenefitNumber({ token, cpf }) {
 }
 
 async function extractBenefitNumber({ cpf, login, senha }) {
-    const token = await authenticate({ login, senha });
+    try {
+        const token = await authenticate({ login, senha });
 
-    const benefitNumber = await fetchBenefitNumber({ token, cpf });
+        const benefitNumber = await fetchBenefitNumber({ token, cpf });
 
-    return benefitNumber;
+        return benefitNumber;
+    } catch (e) {
+        console.error(e.message);
+        throw new Error('Failed to fetch extratoclube API');
+    }
 }
 
 module.exports = {
