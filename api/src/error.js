@@ -14,10 +14,19 @@ class QueueUnavailable extends Error {
     }
 }
 
-const errorTypes = [NotFoundError, QueueUnavailable];
+class ValidationError extends Error {
+    constructor(message) {
+        super(message || "ValidationError");
+        this.statusCode = 400;
+        this.message;
+    }
+}
+
+const errorTypes = [NotFoundError, QueueUnavailable, ValidationError];
 
 module.exports = {
     NotFoundError,
     QueueUnavailable,
+    ValidationError,
     errorTypes,
 };
