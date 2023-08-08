@@ -2,7 +2,7 @@
 
 Sistema para simplificar a extração e acesso aos números de benefícios.
 
-![Visão Geral do Sistema](https://github.com/mdutra/crawler-and-search-api/assets/7758295/b81dac4f-b7eb-484e-a86c-252fb2517772)
+![Visão Geral do Sistema](https://github.com/mdutra/crawler-and-search-system/assets/7758295/1ace6c7c-c841-4aba-922e-0791af9cfba1)
 
 ## Instruções de execução para avaliação do desafio
 
