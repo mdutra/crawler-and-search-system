@@ -24,9 +24,9 @@ async function fetchBenefitNumber({ token, cpf }) {
 async function extractBenefitNumber({ cpf, login, senha }) {
     const token = await authenticate({ login, senha });
 
-    const benifitNumber = await fetchBenefitNumber({ token, cpf });
+    const benefitNumber = await fetchBenefitNumber({ token, cpf });
 
-    return benifitNumber;
+    return benefitNumber;
 }
 
 module.exports = {
